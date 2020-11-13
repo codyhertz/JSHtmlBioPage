@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Bio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="myCSS.css">
+  </head>
+
+  <body class="background">
+    <header>
+      <nav class="nav-bg">
+        <!--- When I change these styles to a class it breaks --->
+        <a style="text-decoration: none; font-size: 20px; color: white; padding-right: 15px" href="hello.html"><strong>Home</strong></a>
+        <a style="text-decoration: none; font-size: 17px; color: white; padding-right: 15px" href="bio.html">BIO</a>
+        <a style="text-decoration: none; font-size: 17px; color: white; padding-right: 15px" href="forms.html">Contact Me</a>
+      </nav>
+    </header>
+    <article class="container jumbotron shadow-lg p-3 mb-5 rounded">
+        <section>
+          <h1 class="title title-marg">Hello, My name is Cody Hertz.</h1><br>
+          <img class="center-bio" src="me1.jpg" alt="Me" height="300" width="500">
+          <br>
+        </section>
+        <hr>
+        <section class="center-info">
+          <section class="row">
+            <section class="col">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Languages: </h5>
+                  <hr>
+                  <ul class="card-text bioList">
+                    <li>Python</li>
+                    <li>C++</li>
+                    <li>Java</li>
+                    <li>TypeScript</li>
+                    <li>C</li>
+                    <li>SQL+</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="col">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Work Experience: </h5>
+                  <hr>
+                  <ul class="card-text bioList">
+                    <li>Lab Assistant</li>
+                    <li>Lab Instructor</li>
+                    <li>CS Tutor</li>
+                    <li>Full Stack Developer</li>
+                    <li>Helpdesk</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+            <section class="col">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Projects: </h5>
+                  <hr>
+                  <ul class="card-text bioList">
+                    <li id="overwatch">Overwatch Match Prediction AI</li>
+                    <li id="manage">School Department Managment Suite</li>
+                    <li id="music">C++ Music Library</li>
+                    <li id="ai">Self Driving Car Learning AI Simulation</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          </section>
+        </section>
+        <br>
+        <br>
+        <section id="extra-div" style="visibility: hidden" class="container jumbotron shadow-lg p-3 mb-5 rounded">
+          <p id="extra-text"></p>
+        </section>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script>
+          const addDivOverwatch = (event) =>
+          {
+            let aTag = document.getElementById("link");
+
+            if(aTag != null)
+            {
+              aTag.remove();
+            }
+
+            event.preventDefault();
+            let newDivs = document.getElementById("extra-div");
+            newDivs.style.visibility = "visible";
+            let par = document.getElementById("extra-text");
+            par.textContent = "Application made for my final project of my Machine Learning course, takes in user input about the match and attempts to predict the results of the game. Provides a web based interface to navigate the program, as well as comparing the accuracy of multiple algorithms using the dataset, as well as retraining all on the interface.";
+            var a = document.createElement('a');
+            a.setAttribute("id", "link");
+            var link = document.createTextNode("Github Link");
+            a.appendChild(link);
+            a.href = "https://github.com/codyhertz/Overwatch-Match-Prediction-with-Deep-Learning";
+            a.title = "Github Link.";
+            newDivs.appendChild(a);
+          }
+
+          const addDivManage = (event) =>
+          {
+            let aTag = document.getElementById("link");
+
+            if(aTag != null)
+            {
+              aTag.remove();
+            }
+            event.preventDefault();
+            let newDivs = document.getElementById("extra-div");
+            newDivs.style.visibility = "visible";
+            let par = document.getElementById("extra-text");
+            par.textContent = "Application written while working for the Computer Science Department at Texas State University. Suite of multiple management tools such as, invinetory, HR, event scheduling, email services, and more. Written with Angular5 and Flask RESTful. The repository is private so I can't link it.";
+
+          }
+
+          const addDivMusic = (event) =>
+          {
+            let aTag = document.getElementById("link");
+
+            if(aTag != null)
+            {
+              aTag.remove();
+            }
+
+            event.preventDefault();
+            let newDivs = document.getElementById("extra-div");
+            newDivs.style.visibility = "visible";
+            let par = document.getElementById("extra-text");
+            par.textContent = "Library written on top of Windows beep function in C++. Allows for writing music in C++ with notes and note lengths rather than frequency and milliseconds, also has a BPM feature to adjust how long the note is played based off of given note length and current BPM";
+            var a = document.createElement('a');
+            a.setAttribute("id", "link");
+            var link = document.createTextNode("Github Link");
+            a.appendChild(link);
+            a.href = "https://github.com/codyhertz/Music-Creation-Library";
+            a.title = "Github Link.";
+            newDivs.appendChild(a);
+          }
+
+          const addDivAI = (event) =>
+          {
+            let aTag = document.getElementById("link");
+
+            if(aTag != null)
+            {
+              aTag.remove();
+            }
+
+            event.preventDefault();
+            let newDivs = document.getElementById("extra-div");
+            newDivs.style.visibility = "visible";
+            let par = document.getElementById("extra-text");
+            par.textContent = "Program written in Python using Pytorch to simulate how AI learns and provide a sandox user interface to give the car new obstacles to learn to overcome to help train it, written as part of an AI course on Udemy.";
+            var a = document.createElement('a');
+            a.setAttribute("id", "link");
+            var link = document.createTextNode("Github Link");
+            a.appendChild(link);
+            a.href = "https://github.com/codyhertz/AI/tree/master/Self_Driving_Car";
+            a.title = "Github Link.";
+            newDivs.appendChild(a);
+          }
+
+          const extraOw = document.getElementById("overwatch");
+          extraOw.addEventListener("click", addDivOverwatch);
+
+          const extraM = document.getElementById("manage");
+          extraM.addEventListener("click", addDivManage);
+
+          const extraMusic = document.getElementById("music");
+          extraMusic.addEventListener("click", addDivMusic);
+
+          const extraAI = document.getElementById("ai");
+          extraAI.addEventListener("click", addDivAI);
+        </script>
+
+    </article>
+    <footer class="footer">
+      Additional info: <a style="text-decoration: none; color: white" href="https://www.linkedin.com/in/cody-hertz-bbba01166/">My LinkedIn</a>
+    </footer>
+  </body>
+</html>

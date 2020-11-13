@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="myCSS.css">
+  </head>
+
+  <body class="background">
+    <header>
+      <nav class="nav-bg">
+        <!--- When I change these styles to a class it breaks --->
+        <a style="text-decoration: none; font-size: 20px; color: white; padding-right: 15px" href="hello.html"><strong>Home</strong></a>
+        <a style="text-decoration: none; font-size: 17px; color: white; padding-right: 15px" href="bio.html">BIO</a>
+        <a style="text-decoration: none; font-size: 17px; color: white; padding-right: 15px" href="forms.html">Contact Me</a>
+      </nav>
+    </header>
+    <article class="container jumbotron shadow-lg p-3 mb-5 rounded float-middle">
+      <section class="form-group center-form">
+        <form>
+          <legend class="title">Contact Me</legend>
+          <label for="username">Name</label>
+          <input type="text" id="username" class="form-control form-limit" name="name" required><br><br>
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control form-limit" name="email" required><br><br>
+          <label for="number">Phone Number</label>
+          <input type="tel" id="number" class="form-control form-limit" name="number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
+          <label for="message">Message</label>
+          <textarea id="message" class="form-control form-limit" name="message" required></textarea>
+          <br>
+          <input type="submit" id="sub" class="btn btn-success home-button" value="Submit">
+        </form>
+        <p id="counter">
+        </p>
+      </section>
+
+      <div id="info" class="row">
+      </div>
+    </article>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+      let count = 0;
+      const handleSubmit = event =>
+      {
+          event.preventDefault();
+          count++;
+
+          document.getElementById("counter").textContent = "Current submissons: " + count;
+          const username = document.getElementById("username").value;
+          const email = document.getElementById("email").value;
+          const number = document.getElementById("number").value;
+          const message = document.getElementById("message").value;
+
+          const newDiv = document.createElement("div");
+          newDiv.setAttribute("id", "newDiv" + count);
+          newDiv.setAttribute("class", "col jumbotron shadow-lg p-3 mb-5 rounded");
+
+          newDiv.textContent = "Name: " + username + "\r\n";
+          newDiv.textContent += "Email: " + email + "\r\n";
+          newDiv.textContent += "Number: " + number + "\r\n";
+          newDiv.textContent += message;
+
+          const removeButton = document.createElement("BUTTON");
+          removeButton.setAttribute("id", "remove" + count);
+          removeButton.setAttribute("class", "btn btn-danger");
+          removeButton.textContent = "Delete Submission";
+          removeButton.addEventListener("click", () => {newDiv.remove()});
+          newDiv.appendChild(removeButton);
+
+          const alertButton = document.createElement("BUTTON");
+          alertButton.setAttribute("id", "alert" + count);
+          alertButton.setAttribute("class", "btn btn-success");
+          alertButton.textContent = "Alert Submittee";
+          alertButton.addEventListener("click", () => {alert("Your message has been recieved!")});
+          newDiv.appendChild(alertButton);
+
+          document.getElementById("username").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("number").value = "";
+          document.getElementById("message").value = "";
+
+          document.getElementById("info").appendChild(newDiv)
+      }
+
+      const submit = document.getElementById("sub");
+      submit.addEventListener("click", handleSubmit);
+    </script>
+
+    <footer class="footer">
+      Additional info: <a style="text-decoration: none; color: white" href="https://www.linkedin.com/in/cody-hertz-bbba01166/">My LinkedIn</a>
+    </footer>
+  </body>
+</html>

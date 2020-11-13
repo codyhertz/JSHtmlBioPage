@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Launch Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="myCSS.css">
+  </head>
+
+  <body class="background">
+    <header>
+      <nav class="nav-bg">
+        <!--- When I change these styles to a class it breaks --->
+        <a style="text-decoration: none; font-size: 20px; color: white; padding-right: 15px" href="hello.html"><strong>Home</strong></a>
+        <a style="text-decoration: none; font-size: 17px; color: white; padding-right: 15px" href="bio.html">BIO</a>
+        <a style="text-decoration: none; font-size: 17px; color: white; padding-right: 15px" href="forms.html">Contact Me</a>
+      </nav>
+    </header>
+    <article class="container jumbotron shadow-lg p-3 mb-5 rounded">
+      <h1 class="title">
+        Welcome <span id="welcome"></span>! This is my practice HTML-CSS web page!
+      </h1>
+      <hr>
+      <img width="400" height="500" id="center-image" class="center-img" src="me4.jpg" alt="rocket gif">
+      <br>
+      <p>
+        Hello, my name is Cody Hertz and I have been programming for almost half my life at this point, I began programming in high school since mine offered 5 different programming courses. During this time I participated in Computer Science UIL going to regionals multiple times and State once. I got my Bachelor's in Computer Science at Texas State University where I graduated with a GPA of 3.59. During my time at the university I worked for the Computer Science department, while there I did a number of jobs. At the beginning I had simple jobs like Lab Instructor, Lab Assistant, Lab Tutor, and Lab Monitor depending on the day. After a year of this I transitioned onto the Web Development team and started working as a Full Stack Developer for the computer science department. Outside of this I have a passion for machine learning and have done a large amount of outside studying.
+      </p>
+      <br>
+      <section class="home-button">
+        <a class="btn btn-primary" href="bio.html" value="BIO">BIO</a>
+        <a class="btn btn-primary" href="forms.html">Contact Me</a>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</a>
+      </section>
+    </article>
+
+    <div id="loginModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Please Login!</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <section class="form-group center-form">
+              <form action="hello.html">
+                <label for="name">Username</label>
+                <input type="text" id="name" class="form-control form-limit" name="name" required>
+                <div class="modal-footer">
+                  <input type="submit" id="sub" class="btn btn-success home-button" value="Submit" data-dismiss="modal">
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+      function ajaxCall(url, cb){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200){
+                  var res = this.responseText;
+                  cb(res);
+              }
+          }
+          xhttp.open("GET", url, true);
+          xhttp.send();
+      }
+
+      function formatData(data){
+        if(data != "[]")
+        {
+          let user = JSON.parse(data)[0].name;
+          document.getElementById("welcome").textContent = user;
+        }
+        else
+        {
+          alert("Invalid username!");
+        }
+      }
+
+      const handleSubmit = event =>
+      {
+          event.preventDefault();
+          const username = document.getElementById("name")
+          const text = username.value.trim();
+
+          ajaxCall("https://jsonplaceholder.typicode.com/users?username=" + text, formatData);
+          username.value = "";
+      }
+
+      var counter = 1;
+      setInterval(function(){
+        if(counter % 4 == 0)
+        {
+          document.getElementById("center-image").src = "me4.jpg";
+          counter++;
+        }
+        else if(counter % 4 == 3)
+        {
+          document.getElementById("center-image").src = "me7.jpg";
+          counter++;
+        }
+        else if(counter % 4 == 2)
+        {
+          document.getElementById("center-image").src = "me2.jpg";
+          counter++;
+        }
+        else
+        {
+          document.getElementById("center-image").src = "me3.jpg";
+          counter++;
+        }
+      }, 7000);
+
+      const submit = document.getElementById("sub");
+      submit.addEventListener("click", handleSubmit);
+
+    </script>
+
+    <footer class="footer">
+      Additional info: <a style="text-decoration: none; color: white" href="https://www.linkedin.com/in/cody-hertz-bbba01166/">My LinkedIn</a>
+    </footer>
+  </body>
+
+</html>
